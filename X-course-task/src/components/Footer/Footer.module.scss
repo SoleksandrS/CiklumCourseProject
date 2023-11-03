@@ -19,16 +19,3 @@
   color: $colorContentLight;
   font-weight: bold;
 }
-
-.link {
-  color: $colorPrimary;
-  transition: color .3s ease;
-
-  &:hover {
-    color: $colorPrimaryLight;
-  }
-
-  &:active {
-    color: $colorPrimaryDark;
-  }
-}

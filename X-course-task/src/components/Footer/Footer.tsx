@@ -1,3 +1,5 @@
+import { ALink } from '../';
+
 import styles from './Footer.module.scss';
 
 function Footer() {
@@ -6,9 +8,9 @@ function Footer() {
       <div className={styles['inner']}>
         <p className={styles['text']}>
           Виконано в{' '}
-          <a href="https://prometheus.org.ua/" className={styles['link']}>
+          <ALink href="https://prometheus.org.ua/" target="_blank" specUnderline>
             Prometheus
-          </a>{' '}
+          </ALink>{' '}
           © 2023
         </p>
       </div>

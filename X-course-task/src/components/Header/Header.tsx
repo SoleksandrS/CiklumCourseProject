@@ -1,5 +1,6 @@
 import cartIcon from '../../assets/images/cart.svg';
 import avatarIcon from '../../assets/images/avatar.png';
+import { Button } from '../';
 
 import styles from './Header.module.scss';
 
@@ -12,7 +13,9 @@ function Header() {
           <button className={styles['button-cart']}>
             <img src={cartIcon} alt="cart" />
           </button>
-          <button>Sign out</button>
+          <Button onClick={() => console.log('Sign out')} typeStyleBtn="transparent">
+            Sign out
+          </Button>
           <div className={styles['user']}>
             <img src={avatarIcon} alt="avatar" className={styles['avatar']} />
             <p className={styles['name']}>Username</p>

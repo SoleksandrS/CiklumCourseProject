@@ -1,0 +1,46 @@
+@import "../../scss/variables.scss";
+
+.button {
+  font-size: 1.6rem;
+  height: fit-content;
+  padding: 7px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  transition: background-color .3s ease,
+              color .3s ease,
+              border-color .3s ease;
+
+  &.primary {
+    color: $colorContentLightMax;
+    background-color: $colorPrimary;
+
+    &:hover {
+      background-color: $colorPrimaryLight1;
+    }
+
+    &:active {
+      background-color: $colorPrimaryDark;
+    }
+  }
+
+  &.transparent {
+    background-color: transparent;
+    color: $colorPrimary;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 2px solid $colorPrimary;
+
+    &:hover {
+      border-color: $colorPrimaryDark;
+      background-color: $colorPrimaryLight2;
+      color: $colorPrimaryDark;
+    }
+
+    &:active {
+      border-color: $colorPrimaryLight1;
+      background-color: $colorPrimaryLight1;
+      color: $colorContentLightMax;
+    }
+  }
+}

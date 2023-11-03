@@ -1,0 +1,45 @@
+@import "../../scss/variables.scss";
+
+.header {
+  height: $heightHeader;
+  display: flex;
+  align-items: center;
+  padding: 0 $sidePadding;
+  border-bottom: 2px solid $colorBackgroundDark;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-size: 2.2rem;
+}
+
+.control {
+  display: flex;
+  gap: 15px;
+}
+
+.button-cart {
+  height: 35px;
+  width: 35px;
+}
+
+.user {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  .avatar {
+    height: 30px;
+    width: 30px;
+  }
+
+  .name {
+    font-size: 1.6rem;
+  }
+}

@@ -22,11 +22,23 @@
 .control {
   display: flex;
   gap: 15px;
+  align-items: center;
 }
 
 .button-cart {
   height: 35px;
   width: 35px;
+  border-radius: 5px;
+  padding: 1px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color .3s ease;
+
+  &:hover, 
+  &:active {
+    background-color: $colorBackgroundDark;
+  }
 }
 
 .user {

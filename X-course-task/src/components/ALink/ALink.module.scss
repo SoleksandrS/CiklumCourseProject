@@ -1,0 +1,53 @@
+@import "../../scss/variables.scss";
+
+.link {
+  color: $colorPrimary;
+  transition: color .3s ease;
+
+  &:hover {
+    color: $colorPrimaryLight1;
+  }
+
+  &:active {
+    color: $colorPrimaryDark;
+  }
+
+  &.spec-underline {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      width: 0;
+      bottom: 0;
+      background-color: $colorPrimary;
+      transition: background-color, .3s ease,
+                  width .3s ease;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+
+    &:hover {
+      &::before,
+      &::after {
+        width: 100%;
+        background-color: $colorPrimaryLight1;
+      }
+    }
+
+    &:active {
+      &::before,
+      &::after {
+        background-color: $colorPrimaryDark;
+      }
+    }
+  }
+}

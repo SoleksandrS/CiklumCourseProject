@@ -1,10 +1,10 @@
 @import "../../scss/variables.scss";
 
 .header {
-  height: 5rem;
+  height: $heightHeader;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 $sidePadding;
   border-bottom: 2px solid $colorBackgroundDark;
 }
 

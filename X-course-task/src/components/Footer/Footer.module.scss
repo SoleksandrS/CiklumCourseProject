@@ -2,10 +2,10 @@
 
 .footer {
   background-color: $colorBackgroundDark;
-  height: 5rem;
+  height: $heightFooter;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 $sidePadding;
 }
 
 .inner {

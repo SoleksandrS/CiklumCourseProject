@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import { Footer } from '../../components';
 
 import styles from './MainLayout.module.scss';
 
@@ -9,7 +10,7 @@ function MainLayout() {
       <main className={styles['main']}>
         <Outlet />
       </main>
-      <h1>Footer</h1>
+      <Footer />
     </div>
   );
 }

@@ -9,7 +9,8 @@ function NotFound() {
   return (
     <div className={styles['not-found']}>
       <div className={styles['block']}>
-        <h1 className={styles['title']}>Oops, something went wrong</h1>
+        <p className={styles['code']}>404</p>
+        <h2 className={styles['title']}>Oops, something went wrong</h2>
         <Button typeStyleBtn="primary" onClick={() => navigate('/books')}>
           Go to home
         </Button>

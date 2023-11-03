@@ -1,14 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Book, Books, Cart, NotFound, SignIn } from '../pages';
 
 function Routing() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="signin" element={<h1>Sign in</h1>} />
-        <Route path="books" element={<h1>Books</h1>} />
-        <Route path="books/:id" element={<h1>Books/id</h1>} />
-        <Route path="cart" element={<h1>Cart</h1>} />
-        <Route path="*" element={<h1>Not Found</h1>} />
+        <Route path="signin" element={<SignIn />} />
+        <Route path="books" element={<Books />} />
+        <Route path="books/:id" element={<Book />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

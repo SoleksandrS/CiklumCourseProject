@@ -3,6 +3,42 @@
 .books {
   display: flex;
   flex-direction: column;
+  gap: 15px;
+}
+
+.control {
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  right: 5px;
+  top: 50%;
+  transform: translate(0, -50%);
+  cursor: text;
+  background: url("../../assets/images/search.svg");
+  opacity: 0.8;
+}
+
+.input {
+  width: 400px;
+  padding: 8px 35px 8px 10px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  border: 2px solid $colorBackgroundDark;
+  outline: none;
+  transition: border-color .3s ease;
+
+  &:focus {
+    border-color: $colorPrimaryLight1;
+  }
 }
 
 .list {

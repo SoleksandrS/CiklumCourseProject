@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   padding: 0 $sidePadding;
-  border-bottom: 2px solid $colorBackgroundDark;
+  border-bottom: 2px solid $colorBackgroundDark1;
 }
 
 .inner {
@@ -39,7 +39,7 @@
 
   &:hover, 
   &:active {
-    background-color: $colorBackgroundDark;
+    background-color: $colorBackgroundDark1;
   }
 }
 

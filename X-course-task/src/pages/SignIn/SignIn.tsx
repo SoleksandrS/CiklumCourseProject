@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Button } from '../../components';
+import { Button, Input } from '../../components';
 
 import avatarIcon from '../../assets/images/avatar.png';
 
@@ -19,7 +19,7 @@ function SignIn() {
           <label className={styles['label']} htmlFor="user-name">
             Username
           </label>
-          <input
+          <Input
             className={styles['input']}
             type="text"
             id="user-name"

@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import books from '../../assets/data/books.json';
-import { BookCard } from '../../components';
+import { BookCard, Input } from '../../components';
 import BookType from '../../types/BookType';
 
 import styles from './Books.module.scss';
@@ -35,15 +35,17 @@ function Books() {
     <div className={styles['books']}>
       <div className={styles['control']}>
         <div className={styles['search-bar']}>
-          <input
+          <Input
             className={styles['input']}
             type="text"
             value={searchValue}
-            onChange={(event) => setSearchValue(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setSearchValue(event.target.value)
+            }
             id="search-books"
             name="search-books"
             placeholder="Search book"
-            ref={refSearchInput}
+            refObj={refSearchInput}
           />
           <span className={styles['icon']} onClick={() => refSearchInput.current?.focus()}></span>
         </div>

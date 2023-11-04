@@ -1,0 +1,15 @@
+@import "../../scss/variables.scss";
+
+.input {
+  width: 250px;
+  padding: 8px 10px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  border: 2px solid $colorBackgroundDark;
+  outline: none;
+  transition: border-color .3s ease;
+
+  &:focus {
+    border-color: $colorPrimaryLight1;
+  }
+}

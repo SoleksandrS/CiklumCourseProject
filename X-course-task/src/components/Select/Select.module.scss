@@ -1,0 +1,70 @@
+@import "../../scss/variables.scss";
+
+.select {
+  position: relative;
+  width: 150px;
+}
+
+.display {
+  font-size: 1.5rem;
+  padding: 8px 35px 8px 10px;
+  border-radius: 5px;
+  border: 2px solid $colorBackgroundDark1;
+  transition: border-color .3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  .arrow {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    right: 5px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    background: url("../../assets/images/arrow.svg");
+    opacity: 0.8;
+    transition: transform .3s ease;
+  }
+
+  &.active {
+    border-color: $colorPrimaryLight1;
+
+    .arrow {
+      transform: translate(0, -50%)
+                  rotate(-180deg);
+    }
+  }
+}
+
+
+
+.option-list {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  padding: 3px 0;
+  border: 2px solid $colorBackgroundDark1;
+  border-radius: 5px;
+  background-color: $colorBackground;
+  position: absolute;
+  bottom: -5px;
+  transform: translate(0, 100%);
+}
+
+.option {
+  font-size: 1.5rem;
+  padding: 7px 10px;
+  transition: background-color .3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    background-color: $colorBackgroundDark1;
+  }
+}
+

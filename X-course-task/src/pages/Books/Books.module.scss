@@ -1,0 +1,17 @@
+@import "../../scss/variables.scss";
+
+.books {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  row-gap: 15px;
+}
+
+.book-item {
+  width: 260px;
+}

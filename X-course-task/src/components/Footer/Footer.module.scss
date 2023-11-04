@@ -3,6 +3,7 @@
 .footer {
   background-color: $colorBackgroundDark;
   height: $heightFooter;
+  min-height: $heightFooter;
   display: flex;
   align-items: center;
   padding: 0 $sidePadding;

@@ -19,7 +19,13 @@ function SignIn() {
           <label className={styles['label']} htmlFor="user-name">
             Username
           </label>
-          <input className={styles['input']} type="text" id="user-name" name="user-name" />
+          <input
+            className={styles['input']}
+            type="text"
+            id="user-name"
+            name="user-name"
+            placeholder="type Username"
+          />
         </div>
         <Button type="submit" typeStyleBtn="primary">
           Sign-In

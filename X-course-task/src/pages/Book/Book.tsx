@@ -37,6 +37,7 @@ function Book() {
             <div className={styles['row']}>
               <p>Count</p>
               <input
+                className={styles['input']}
                 type="number"
                 min="1"
                 max={book.amount}

@@ -1,18 +1,35 @@
 import { useMemo, useRef, useState } from 'react';
 import books from '../../assets/data/books.json';
 import { BookCard } from '../../components';
+import BookType from '../../types/BookType';
 
 import styles from './Books.module.scss';
 
 function Books() {
   const [searchValue, setSearchValue] = useState('');
+  const [sortValue, setSortValue] = useState('');
 
   const refSearchInput = useRef<HTMLInputElement>(null);
 
-  const booksList = useMemo(
+  const filteredList = useMemo(
     () => books.filter((book) => book.title.toLowerCase().includes(searchValue.toLowerCase())),
     [searchValue]
   );
+
+  const sortedList = useMemo(() => {
+    if (sortValue === '') return filteredList;
+    const [value, order] = sortValue.split('-');
+
+    if (order === 'desc') {
+      return filteredList.sort((a, b) =>
+        a[value as keyof BookType] < b[value as keyof BookType] ? 1 : -1
+      );
+    } else {
+      return filteredList.sort((a, b) =>
+        a[value as keyof BookType] > b[value as keyof BookType] ? 1 : -1
+      );
+    }
+  }, [filteredList, sortValue]);
 
   return (
     <div className={styles['books']}>
@@ -30,15 +47,21 @@ function Books() {
           />
           <span className={styles['icon']} onClick={() => refSearchInput.current?.focus()}></span>
         </div>
-        <select onChange={(event) => console.log(event.target.value)}>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
-          <option value="4">Option 4</option>
+        <select
+          className={styles['select']}
+          value={sortValue}
+          onChange={(event) => setSortValue(event.target.value)}>
+          <option value="" selected disabled hidden>
+            Sort
+          </option>
+          <option value="title-asc">Title ASC</option>
+          <option value="title-desc">Title DESC</option>
+          <option value="price-asc">Price ASC</option>
+          <option value="price-desc">Price DESC</option>
         </select>
       </div>
       <ul className={styles['list']}>
-        {booksList.map((book) => (
+        {sortedList.map((book) => (
           <li key={`book-${book.id}`}>
             <BookCard book={book} />
           </li>

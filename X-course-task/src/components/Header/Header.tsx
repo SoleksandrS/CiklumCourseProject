@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../';
 
-import cartIcon from '../../assets/images/cart.svg';
+import cartIcon from '../../assets/icons/cart.svg';
 import avatarIcon from '../../assets/images/avatar.png';
 
 import styles from './Header.module.scss';

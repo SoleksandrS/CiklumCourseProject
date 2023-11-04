@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Button, Input } from '../../components';
 
-import avatarIcon from '../../assets/images/avatar.png';
+import avatarImage from '../../assets/images/avatar.png';
 
 import styles from './SignIn.module.scss';
 
@@ -13,7 +13,7 @@ function SignIn() {
 
   return (
     <div className={styles['sign-in']}>
-      <img className={styles['avatar']} src={avatarIcon} alt="avatar" />
+      <img className={styles['avatar']} src={avatarImage} alt="avatar" />
       <form className={styles['form']} onSubmit={onSubmitHandler}>
         <div className={styles['row']}>
           <label className={styles['label']} htmlFor="user-name">

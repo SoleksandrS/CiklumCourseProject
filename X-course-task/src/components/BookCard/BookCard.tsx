@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../';
 import BookType from '../../types/BookType';
 
-import notFoundIcon from '../../assets/images/imageNotFound.png';
+import notFoundImage from '../../assets/images/imageNotFound.png';
 
 import styles from './BookCard.module.scss';
 
@@ -23,7 +23,7 @@ function BookCard(props: BookCardProps) {
           alt={book.title}
           onError={(event) => {
             const image = event.target as HTMLImageElement;
-            image.src = notFoundIcon;
+            image.src = notFoundImage;
           }}
         />
       </Link>

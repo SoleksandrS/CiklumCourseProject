@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../';
 
 import cartIcon from '../../assets/icons/cart.svg';
-import avatarIcon from '../../assets/images/avatar.png';
+import avatarImage from '../../assets/images/avatar.png';
 
 import styles from './Header.module.scss';
 
@@ -21,7 +21,7 @@ function Header() {
             Sign out
           </Button>
           <div className={styles['user']}>
-            <img src={avatarIcon} alt="avatar" className={styles['avatar']} />
+            <img src={avatarImage} alt="avatar" className={styles['avatar']} />
             <p className={styles['name']}>Username</p>
           </div>
         </div>

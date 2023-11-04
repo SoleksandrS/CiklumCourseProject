@@ -4,7 +4,7 @@ import books from '../../assets/data/books.json';
 import { NotFound } from '../';
 import { Button, Input } from '../../components';
 
-import notFoundIcon from '../../assets/images/imageNotFound.png';
+import notFoundImage from '../../assets/images/imageNotFound.png';
 
 import styles from './Book.module.scss';
 
@@ -26,7 +26,7 @@ function Book() {
                 alt={book.title}
                 onError={(event) => {
                   const image = event.target as HTMLImageElement;
-                  image.src = notFoundIcon;
+                  image.src = notFoundImage;
                   image.className = styles['not-found-image'];
                 }}
               />

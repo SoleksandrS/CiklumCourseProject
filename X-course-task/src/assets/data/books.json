@@ -159,6 +159,7 @@
 			"frontend",
 			"ui"
 		],
+		"amount": 42,
 		"shortDescription": "Universal Design for Web Applications teaches you how to build websites that are more accessible to people with disabilities and explains why doing so is good business.",
 		"description": "Universal Design for Web Applications teaches you how to build websites that are more accessible to people with disabilities and explains why doing so is good business. It takes more work up front, but the potential payoff is huge -- especially when mobile users need to access your sites. You'll discover how to use standards-based web technologies -- such as XHTML, CSS, and Ajax, along with video and Flash -- to develop applications for a wide range of users and a variety of devices, including the mobile Web. You'll also learn specifics about this target audience, especially the key over-50 age group, whose use of the Web is rapidly growing."
 	},

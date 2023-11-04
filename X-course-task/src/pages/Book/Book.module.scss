@@ -6,6 +6,10 @@
   justify-content: space-between;
 }
 
+.not-found-image {
+  width: 300px;
+}
+
 .info-block {
   width: 60%;
   display: flex;
@@ -13,7 +17,7 @@
   gap: 15px;
   padding: 0 10px;
 
-  .row {
+  .top-info {
     display: flex;
     gap: 30px;
     padding: 0 20px;
@@ -26,12 +30,15 @@
   gap: 15px;
 }
 
-.title {
-  font-size: 3.2rem;
+.add-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.6rem;
 }
 
-.paragraph {
-  font-size: 1.6rem;
+.title {
+  font-size: 3.2rem;
 }
 
 .description {
@@ -50,26 +57,26 @@
   gap: 20px;
   font-size: 1.6rem;
   font-weight: bold;
+}
 
-  .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .input {
-    width: 80px;
-    padding: 8px 10px;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    border: 2px solid $colorBackgroundDark;
-    outline: none;
-    transition: border-color .3s ease;
-    text-align: center;
-  
-    &:focus {
-      border-color: $colorPrimaryLight1;
-    }
+.input {
+  width: 80px;
+  padding: 8px 10px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  border: 2px solid $colorBackgroundDark;
+  outline: none;
+  transition: border-color .3s ease;
+  text-align: center;
+
+  &:focus {
+    border-color: $colorPrimaryLight1;
   }
 }
 

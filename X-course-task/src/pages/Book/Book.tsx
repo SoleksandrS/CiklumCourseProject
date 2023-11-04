@@ -2,9 +2,11 @@ import { useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import books from '../../assets/data/books.json';
 import { NotFound } from '../';
+import { Button } from '../../components';
+
+import notFoundIcon from '../../assets/images/imageNotFound.png';
 
 import styles from './Book.module.scss';
-import { Button } from '../../components';
 
 function Book() {
   const { id } = useParams();
@@ -18,13 +20,23 @@ function Book() {
       {book ? (
         <div className={styles['book']}>
           <div className={styles['info-block']}>
-            <div className={styles['row']}>
-              <img src={book.image} alt={book.title} />
+            <div className={styles['top-info']}>
+              <img
+                src={book.image}
+                alt={book.title}
+                onError={(event) => {
+                  const image = event.target as HTMLImageElement;
+                  image.src = notFoundIcon;
+                  image.className = styles['not-found-image'];
+                }}
+              />
               <div className={styles['column']}>
                 <h1 className={styles['title']}>{book.title}</h1>
-                <p className={styles['paragraph']}>Author(s): {book.author}</p>
-                <p className={styles['paragraph']}>Book level: {book.level}</p>
-                <p className={styles['paragraph']}>Book tags: {book.tags.join(', ')}</p>
+                <ul className={styles['add-info-list']}>
+                  <li>Author(s): {book.author}</li>
+                  <li>Book level: {book.level}</li>
+                  <li>Book tags: {book.tags.join(', ')}</li>
+                </ul>
               </div>
             </div>
             <p className={styles['description']}>{book.description}</p>

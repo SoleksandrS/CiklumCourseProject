@@ -1,7 +1,36 @@
+import { useCallback } from 'react';
+import { Button } from '../../components';
+
+import avatarIcon from '../../assets/images/avatar.png';
+
+import styles from './SignIn.module.scss';
+
 function SignIn() {
+  const onSubmitHandler = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(event);
+  }, []);
+
   return (
-    <div>
-      <h1>Sign in</h1>
+    <div className={styles['sign-in']}>
+      <img className={styles['avatar']} src={avatarIcon} alt="avatar" />
+      <form className={styles['form']} onSubmit={onSubmitHandler}>
+        <div className={styles['row']}>
+          <label className={styles['label']} htmlFor="user-name">
+            Username
+          </label>
+          <input
+            className={styles['input']}
+            type="text"
+            id="user-name"
+            name="user-name"
+            placeholder="type Username"
+          />
+        </div>
+        <Button type="submit" typeStyleBtn="primary">
+          Sign-In
+        </Button>
+      </form>
     </div>
   );
 }

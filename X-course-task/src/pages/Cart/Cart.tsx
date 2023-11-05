@@ -1,12 +1,41 @@
 import { useMemo } from 'react';
 import { Button } from '../../components';
+import books from '../../assets/data/books.json';
 
 import cartIcon from '../../assets/icons/cart.svg';
 
 import styles from './Cart.module.scss';
 
 function Cart() {
-  const cartList = useMemo(() => [], []);
+  const cartList = useMemo(
+    () => [
+      {
+        id: 1,
+        count: 2
+      },
+      {
+        id: 5,
+        count: 7
+      }
+    ],
+    []
+  );
+
+  const displayList = useMemo(() => {
+    return cartList.map((item) => {
+      const book = books.find((book) => book.id === item.id);
+      return {
+        ...item,
+        title: book?.title,
+        price: book?.price ?? 0
+      };
+    });
+  }, [cartList]);
+
+  const allSum = useMemo(
+    () => displayList.reduce((acc, item) => acc + item.count * item.price, 0),
+    [displayList]
+  );
 
   return (
     <div className={styles['cart']}>
@@ -20,7 +49,18 @@ function Cart() {
       </div>
       <div className={styles['main-content']}>
         {cartList.length > 0 ? (
-          <div>List</div>
+          <>
+            <ul className={styles['list']}>
+              {displayList.map((item) => (
+                <li className={styles['item']} key={`cart-item-${item.id}`}>
+                  <p className={styles['title']}>{item.title}</p>
+                  <p className={styles['count']}>{item.count}</p>
+                  <p className={styles['price']}>{item.price * item.count}</p>
+                </li>
+              ))}
+            </ul>
+            <div className={styles['total']}>Total price, $ {allSum.toFixed(2)}</div>
+          </>
         ) : (
           <div className={styles['empty']}>
             <img className={styles['empty-image']} src={cartIcon} alt="Cart" />

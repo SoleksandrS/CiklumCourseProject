@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useBooksContext } from '../../contexts';
 import { Button, Input } from '../../components';
@@ -10,11 +10,15 @@ import styles from './Book.module.scss';
 
 function Book() {
   const { id } = useParams();
-  const { books } = useBooksContext();
+  const { books, addToCart } = useBooksContext();
 
   const [count, setCount] = useState(1);
 
   const book = useMemo(() => books.find((obj) => obj.id === +id!), [books, id]);
+
+  const onClickHandler = useCallback(() => {
+    if (book) addToCart(book.id, count);
+  }, [addToCart, book, count]);
 
   return (
     <>
@@ -64,10 +68,7 @@ function Book() {
               <p>Total price, $</p>
               <span>{(book.price * count).toFixed(2)}</span>
             </div>
-            <Button
-              onClick={() => console.log(count)}
-              className={styles['btn']}
-              typeStyleBtn="primary">
+            <Button onClick={onClickHandler} className={styles['btn']} typeStyleBtn="primary">
               Add to cart
             </Button>
           </div>

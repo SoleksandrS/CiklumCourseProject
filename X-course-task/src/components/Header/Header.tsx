@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../';
 
 import cartIcon from '../../assets/icons/cart.svg';
@@ -7,6 +7,8 @@ import avatarImage from '../../assets/images/avatar.png';
 import styles from './Header.module.scss';
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <header className={styles['header']}>
       <div className={styles['inner']}>
@@ -14,7 +16,7 @@ function Header() {
           X-course task / Sitailo Oleksandr
         </Link>
         <div className={styles['control']}>
-          <button className={styles['button-cart']}>
+          <button className={styles['button-cart']} onClick={() => navigate('/cart')}>
             <img src={cartIcon} alt="cart" />
           </button>
           <Button onClick={() => console.log('Sign out')} typeStyleBtn="transparent">

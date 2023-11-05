@@ -6,9 +6,7 @@ import { useBooksContext } from '../../contexts';
 import styles from './MainLayout.module.scss';
 
 function MainLayout() {
-  const { books, cartList, loadBooks, loadCartList } = useBooksContext();
-  useEffect(() => console.log(books), [books]);
-  useEffect(() => console.log(cartList), [cartList]);
+  const { loadBooks, loadCartList } = useBooksContext();
 
   useEffect(() => {
     loadBooks();

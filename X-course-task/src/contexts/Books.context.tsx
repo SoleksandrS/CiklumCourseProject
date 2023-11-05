@@ -31,9 +31,14 @@ export const BooksProvider = (props: { children: React.ReactNode }) => {
     setBooks(booksJSON);
   }, []);
 
-  const addToCart = useCallback((id: CartItem['id'], count: CartItem['count']) => {
-    setCartList((prev) => prev.concat([{ id, count }]));
-  }, []);
+  const addToCart = useCallback(
+    (id: CartItem['id'], count: CartItem['count']) => {
+      const newArr = cartList.concat([{ id, count }]);
+      setCartList(newArr);
+      localStorage.setItem('cart-list', JSON.stringify(newArr));
+    },
+    [cartList]
+  );
 
   const value = useMemo(
     () => ({

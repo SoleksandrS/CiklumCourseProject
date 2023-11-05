@@ -11,7 +11,9 @@ function Cart() {
   return (
     <div className={styles['cart']}>
       <div className={styles['top-line']}>
-        <Button>Purchase</Button>
+        <Button typeStyleBtn="success" onClick={() => console.log('Purchase')}>
+          Purchase
+        </Button>
       </div>
       <div className={styles['main-content']}>
         {cartList.length > 0 ? (

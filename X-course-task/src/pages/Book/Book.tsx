@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import books from '../../assets/data/books.json';
-import { NotFound } from '../';
+import { useBooksContext } from '../../contexts';
 import { Button, Input } from '../../components';
+import { NotFound } from '../';
 
 import notFoundImage from '../../assets/images/imageNotFound.png';
 
@@ -10,10 +10,11 @@ import styles from './Book.module.scss';
 
 function Book() {
   const { id } = useParams();
+  const { books } = useBooksContext();
 
   const [count, setCount] = useState(1);
 
-  const book = useMemo(() => books.find((obj) => obj.id === +id!), [id]);
+  const book = useMemo(() => books.find((obj) => obj.id === +id!), [books, id]);
 
   return (
     <>

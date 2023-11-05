@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
+import { useBooksContext } from '../../contexts';
 import { Button } from '../../components';
-import books from '../../assets/data/books.json';
 
 import cartIcon from '../../assets/icons/cart.svg';
 
 import styles from './Cart.module.scss';
 
 function Cart() {
+  const { books } = useBooksContext();
+
   const cartList = useMemo(
     () => [
       {
@@ -30,7 +32,7 @@ function Cart() {
         price: book?.price ?? 0
       };
     });
-  }, [cartList]);
+  }, [books, cartList]);
 
   const allSum = useMemo(
     () => displayList.reduce((acc, item) => acc + item.count * item.price, 0),

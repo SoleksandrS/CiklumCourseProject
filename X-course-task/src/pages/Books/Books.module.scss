@@ -49,4 +49,18 @@
   flex-wrap: wrap;
   column-gap: 30px;
   row-gap: 15px;
+  width: calc($widthBookCard * 4 + 3 * 30px);
+  margin: 0 auto;
+
+  @media screen and (max-width: 1170px) {
+    width: calc($widthBookCard * 3 + 2 * 30px);
+  }
+
+  @media screen and (max-width: 880px) {
+    width: calc($widthBookCard * 2 + 1 * 30px);
+  }
+
+  @media screen and (max-width: 590px) {
+    width: $widthBookCard;
+  }
 }

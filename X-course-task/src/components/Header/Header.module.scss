@@ -36,10 +36,28 @@
   background-color: transparent;
   cursor: pointer;
   transition: background-color .3s ease;
+  position: relative;
 
   &:hover, 
   &:active {
     background-color: $colorBackgroundDark1;
+  }
+
+  .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(20%, -10%);
+    min-width: 20px;
+    height: 20px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 50%;
+    background-color: $colorPrimaryLight1;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

@@ -7,7 +7,7 @@ import cartIcon from '../../assets/icons/cart.svg';
 import styles from './Cart.module.scss';
 
 function Cart() {
-  const { books, cartList } = useBooksContext();
+  const { books, cartList, toPurchase } = useBooksContext();
 
   const displayList = useMemo(() => {
     return cartList.map((item) => {
@@ -28,10 +28,7 @@ function Cart() {
   return (
     <div className={styles['cart']}>
       <div className={styles['top-line']}>
-        <Button
-          disabled={cartList.length <= 0}
-          typeStyleBtn="success"
-          onClick={() => console.log('Purchase')}>
+        <Button disabled={cartList.length <= 0} typeStyleBtn="success" onClick={toPurchase}>
           Purchase
         </Button>
       </div>

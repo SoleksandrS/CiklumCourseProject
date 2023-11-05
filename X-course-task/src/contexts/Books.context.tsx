@@ -14,13 +14,15 @@ interface BooksContextType {
   loadBooks: () => void;
   cartList: CartItem[];
   addToCart: (id: CartItem['id'], count: CartItem['count']) => void;
+  toPurchase: () => void;
 }
 
 const BooksContext = createContext<BooksContextType>({
   books: [],
   loadBooks: () => console.log('Load Books'),
   cartList: [],
-  addToCart: () => console.log('Add to cart')
+  addToCart: () => console.log('Add to cart'),
+  toPurchase: () => console.log('To purchase')
 });
 
 export const BooksProvider = (props: { children: React.ReactNode }) => {
@@ -40,14 +42,20 @@ export const BooksProvider = (props: { children: React.ReactNode }) => {
     [cartList]
   );
 
+  const toPurchase = useCallback(() => {
+    setCartList([]);
+    localStorage.removeItem('cart-list');
+  }, []);
+
   const value = useMemo(
     () => ({
       books,
       loadBooks,
       cartList,
-      addToCart
+      addToCart,
+      toPurchase
     }),
-    [books, loadBooks, cartList, addToCart]
+    [books, loadBooks, cartList, addToCart, toPurchase]
   );
 
   return <BooksContext.Provider value={value}>{props.children}</BooksContext.Provider>;

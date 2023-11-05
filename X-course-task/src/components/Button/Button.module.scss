@@ -62,4 +62,10 @@
       background-color: $colorSuccessDark;
     }
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $colorContentLight !important;
+    background-color: $colorBackgroundDark2 !important;
+  }
 }

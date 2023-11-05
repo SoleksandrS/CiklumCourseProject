@@ -11,7 +11,10 @@ function Cart() {
   return (
     <div className={styles['cart']}>
       <div className={styles['top-line']}>
-        <Button typeStyleBtn="success" onClick={() => console.log('Purchase')}>
+        <Button
+          disabled={cartList.length <= 0}
+          typeStyleBtn="success"
+          onClick={() => console.log('Purchase')}>
           Purchase
         </Button>
       </div>

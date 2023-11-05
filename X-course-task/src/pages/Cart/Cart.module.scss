@@ -1,0 +1,72 @@
+@import "../../scss/variables.scss";
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  height: 100%;
+  gap: 20px;
+}
+
+.top-line {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main-content {
+  flex: 1 1;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 15px;
+
+  &-image {
+    height: 150px;
+    width: 150px;
+  }
+
+  &-text {
+    font-size: 2rem;
+    opacity: 0.8;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.5rem;
+
+  .item {
+    display: flex;
+    border-top: 1px solid $colorBackgroundDark1;
+    border-bottom: 1px solid $colorBackgroundDark1;
+    padding: 15px 20px;
+    gap: 25px;
+
+    .title {
+      max-width: 300px;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .price {
+      margin-left: auto;
+    }
+  }
+}
+
+.total {
+  margin-top: 20px;
+  margin-left: auto;
+  padding-right: 20px;
+  width: fit-content;
+  font-size: 2rem;
+}

@@ -9,7 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
   title?: string;
   onClick?: () => void;
-  typeStyleBtn?: 'primary' | 'transparent';
+  typeStyleBtn?: 'primary' | 'transparent' | 'success';
 }
 
 function Button(props: ButtonProps) {

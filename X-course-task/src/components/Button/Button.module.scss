@@ -49,4 +49,23 @@
       color: $colorContentLightMax;
     }
   }
+
+  &.success {
+    background-color: $colorSuccess;
+
+    &:hover {
+      background-color: $colorSuccessLight;
+    }
+
+    &:active {
+      color: $colorContentLightMax;
+      background-color: $colorSuccessDark;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $colorContentLight !important;
+    background-color: $colorBackgroundDark2 !important;
+  }
 }

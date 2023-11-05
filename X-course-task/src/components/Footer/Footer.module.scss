@@ -1,8 +1,9 @@
 @import "../../scss/variables.scss";
 
 .footer {
-  background-color: $colorBackgroundDark;
+  background-color: $colorBackgroundDark1;
   height: $heightFooter;
+  min-height: $heightFooter;
   display: flex;
   align-items: center;
   padding: 0 $sidePadding;

@@ -1,6 +1,8 @@
-import cartIcon from '../../assets/images/cart.svg';
-import avatarIcon from '../../assets/images/avatar.png';
+import { Link } from 'react-router-dom';
 import { Button } from '../';
+
+import cartIcon from '../../assets/icons/cart.svg';
+import avatarImage from '../../assets/images/avatar.png';
 
 import styles from './Header.module.scss';
 
@@ -8,7 +10,9 @@ function Header() {
   return (
     <header className={styles['header']}>
       <div className={styles['inner']}>
-        <h1 className={styles['title']}>X-course task / Sitailo Oleksandr</h1>
+        <Link to="/books" className={styles['title']}>
+          X-course task / Sitailo Oleksandr
+        </Link>
         <div className={styles['control']}>
           <button className={styles['button-cart']}>
             <img src={cartIcon} alt="cart" />
@@ -17,7 +21,7 @@ function Header() {
             Sign out
           </Button>
           <div className={styles['user']}>
-            <img src={avatarIcon} alt="avatar" className={styles['avatar']} />
+            <img src={avatarImage} alt="avatar" className={styles['avatar']} />
             <p className={styles['name']}>Username</p>
           </div>
         </div>

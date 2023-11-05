@@ -11,6 +11,12 @@
               color .3s ease,
               border-color .3s ease;
 
+  background-color: $colorBackgroundDark1;
+
+  &:hover {
+    background-color: $colorBackgroundDark2;
+  }
+
   &.primary {
     color: $colorContentLightMax;
     background-color: $colorPrimary;

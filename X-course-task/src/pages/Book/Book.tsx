@@ -2,9 +2,9 @@ import { useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import books from '../../assets/data/books.json';
 import { NotFound } from '../';
-import { Button } from '../../components';
+import { Button, Input } from '../../components';
 
-import notFoundIcon from '../../assets/images/imageNotFound.png';
+import notFoundImage from '../../assets/images/imageNotFound.png';
 
 import styles from './Book.module.scss';
 
@@ -26,7 +26,7 @@ function Book() {
                 alt={book.title}
                 onError={(event) => {
                   const image = event.target as HTMLImageElement;
-                  image.src = notFoundIcon;
+                  image.src = notFoundImage;
                   image.className = styles['not-found-image'];
                 }}
               />
@@ -48,13 +48,15 @@ function Book() {
             </div>
             <div className={styles['row']}>
               <p>Count</p>
-              <input
+              <Input
                 className={styles['input']}
                 type="number"
                 min="1"
                 max={book.amount}
                 value={count}
-                onChange={(event) => setCount(+event.target.value)}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setCount(+event.target.value)
+                }
               />
             </div>
             <div className={styles['row']}>

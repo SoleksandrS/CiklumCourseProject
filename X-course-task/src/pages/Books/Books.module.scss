@@ -23,29 +23,20 @@
   top: 50%;
   transform: translate(0, -50%);
   cursor: text;
-  background: url("../../assets/images/search.svg");
+  background: url("../../assets/icons/search.svg");
   opacity: 0.8;
 }
 
 .input {
   width: 400px;
-  padding: 8px 35px 8px 10px;
-  font-size: 1.5rem;
-  border-radius: 5px;
-  border: 2px solid $colorBackgroundDark;
-  outline: none;
-  transition: border-color .3s ease;
-
-  &:focus {
-    border-color: $colorPrimaryLight1;
-  }
+  padding-right: 35px;
 }
 
 .select {
   padding: 8px 10px;
   font-size: 1.5rem;
   border-radius: 5px;
-  border: 2px solid $colorBackgroundDark;
+  border: 2px solid $colorBackgroundDark1;
   transition: border-color .3s ease;
 
   &:focus {
@@ -58,4 +49,18 @@
   flex-wrap: wrap;
   column-gap: 30px;
   row-gap: 15px;
+  width: calc($widthBookCard * 4 + 3 * 30px);
+  margin: 0 auto;
+
+  @media screen and (max-width: 1170px) {
+    width: calc($widthBookCard * 3 + 2 * 30px);
+  }
+
+  @media screen and (max-width: 880px) {
+    width: calc($widthBookCard * 2 + 1 * 30px);
+  }
+
+  @media screen and (max-width: 590px) {
+    width: $widthBookCard;
+  }
 }

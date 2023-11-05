@@ -1,10 +1,10 @@
 @import "../../scss/variables.scss";
 
 .book-card {
-  width: 260px;
+  width: $widthBookCard;
   display: flex;
   flex-direction: column;
-  border: 2px solid $colorBackgroundDark;
+  border: 2px solid $colorBackgroundDark1;
   padding: 5px;
   border-radius: 5px;
 }

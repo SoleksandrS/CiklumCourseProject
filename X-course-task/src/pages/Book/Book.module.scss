@@ -50,7 +50,7 @@
   width: 360px;
   height: fit-content;
   border-radius: 5px;
-  border: 2px solid $colorBackgroundDark;
+  border: 2px solid $colorBackgroundDark1;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -67,17 +67,7 @@
 
 .input {
   width: 80px;
-  padding: 8px 10px;
-  font-size: 1.5rem;
-  border-radius: 5px;
-  border: 2px solid $colorBackgroundDark;
-  outline: none;
-  transition: border-color .3s ease;
   text-align: center;
-
-  &:focus {
-    border-color: $colorPrimaryLight1;
-  }
 }
 
 .btn {

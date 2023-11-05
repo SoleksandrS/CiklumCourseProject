@@ -2,10 +2,11 @@
 
 .header {
   height: $heightHeader;
+  min-height: $heightHeader;
   display: flex;
   align-items: center;
   padding: 0 $sidePadding;
-  border-bottom: 2px solid $colorBackgroundDark;
+  border-bottom: 2px solid $colorBackgroundDark1;
 }
 
 .inner {
@@ -17,6 +18,7 @@
 
 .title {
   font-size: 2.2rem;
+  color: $colorContent;
 }
 
 .control {
@@ -37,7 +39,7 @@
 
   &:hover, 
   &:active {
-    background-color: $colorBackgroundDark;
+    background-color: $colorBackgroundDark1;
   }
 }
 

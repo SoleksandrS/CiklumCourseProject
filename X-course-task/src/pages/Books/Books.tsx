@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import books from '../../assets/data/books.json';
-import { BookCard } from '../../components';
+import { BookCard, Input, Select } from '../../components';
 import BookType from '../../types/BookType';
 
 import styles from './Books.module.scss';
@@ -14,6 +14,28 @@ function Books() {
   const filteredList = useMemo(
     () => books.filter((book) => book.title.toLowerCase().includes(searchValue.toLowerCase())),
     [searchValue]
+  );
+
+  const optionList = useMemo(
+    () => [
+      {
+        value: 'title-asc',
+        title: 'Title ASC'
+      },
+      {
+        value: 'title-desc',
+        title: 'Title DESC'
+      },
+      {
+        value: 'price-asc',
+        title: 'Price ASC'
+      },
+      {
+        value: 'price-desc',
+        title: 'Price DESC'
+      }
+    ],
+    []
   );
 
   const sortedList = useMemo(() => {
@@ -35,30 +57,26 @@ function Books() {
     <div className={styles['books']}>
       <div className={styles['control']}>
         <div className={styles['search-bar']}>
-          <input
+          <Input
             className={styles['input']}
             type="text"
             value={searchValue}
-            onChange={(event) => setSearchValue(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setSearchValue(event.target.value)
+            }
             id="search-books"
             name="search-books"
             placeholder="Search book"
-            ref={refSearchInput}
+            refObj={refSearchInput}
           />
           <span className={styles['icon']} onClick={() => refSearchInput.current?.focus()}></span>
         </div>
-        <select
-          className={styles['select']}
-          value={sortValue}
-          onChange={(event) => setSortValue(event.target.value)}>
-          <option value="" selected disabled hidden>
-            Sort
-          </option>
-          <option value="title-asc">Title ASC</option>
-          <option value="title-desc">Title DESC</option>
-          <option value="price-asc">Price ASC</option>
-          <option value="price-desc">Price DESC</option>
-        </select>
+        <Select
+          options={optionList}
+          onSelect={(value) => setSortValue(value)}
+          selectedValue={sortValue}
+          placeholder="Sort by"
+        />
       </div>
       <ul className={styles['list']}>
         {sortedList.map((book) => (

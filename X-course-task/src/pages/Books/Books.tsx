@@ -1,11 +1,13 @@
 import { useMemo, useRef, useState } from 'react';
-import books from '../../assets/data/books.json';
+import { useBooksContext } from '../../contexts';
 import { BookCard, Input, Select } from '../../components';
 import BookType from '../../types/BookType';
 
 import styles from './Books.module.scss';
 
 function Books() {
+  const { books } = useBooksContext();
+
   const [searchValue, setSearchValue] = useState('');
   const [sortValue, setSortValue] = useState('');
 
@@ -13,7 +15,7 @@ function Books() {
 
   const filteredList = useMemo(
     () => books.filter((book) => book.title.toLowerCase().includes(searchValue.toLowerCase())),
-    [searchValue]
+    [books, searchValue]
   );
 
   const optionList = useMemo(

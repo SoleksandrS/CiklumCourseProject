@@ -1,25 +1,14 @@
 import { useMemo } from 'react';
+import { useBooksContext, useCartContext } from '../../contexts';
 import { Button } from '../../components';
-import books from '../../assets/data/books.json';
 
 import cartIcon from '../../assets/icons/cart.svg';
 
 import styles from './Cart.module.scss';
 
 function Cart() {
-  const cartList = useMemo(
-    () => [
-      {
-        id: 1,
-        count: 2
-      },
-      {
-        id: 5,
-        count: 7
-      }
-    ],
-    []
-  );
+  const { books } = useBooksContext();
+  const { cartList, toPurchase } = useCartContext();
 
   const displayList = useMemo(() => {
     return cartList.map((item) => {
@@ -30,7 +19,7 @@ function Cart() {
         price: book?.price ?? 0
       };
     });
-  }, [cartList]);
+  }, [books, cartList]);
 
   const allSum = useMemo(
     () => displayList.reduce((acc, item) => acc + item.count * item.price, 0),
@@ -40,10 +29,7 @@ function Cart() {
   return (
     <div className={styles['cart']}>
       <div className={styles['top-line']}>
-        <Button
-          disabled={cartList.length <= 0}
-          typeStyleBtn="success"
-          onClick={() => console.log('Purchase')}>
+        <Button disabled={cartList.length <= 0} typeStyleBtn="success" onClick={toPurchase}>
           Purchase
         </Button>
       </div>

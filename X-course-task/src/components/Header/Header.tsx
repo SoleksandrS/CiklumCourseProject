@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useCartContext, useUserContext } from '../../contexts';
 import { Button } from '../';
 
 import cartIcon from '../../assets/icons/cart.svg';
@@ -7,7 +9,11 @@ import avatarImage from '../../assets/images/avatar.png';
 import styles from './Header.module.scss';
 
 function Header() {
+  const { cartList } = useCartContext();
+  const { username, signOut } = useUserContext();
   const navigate = useNavigate();
+
+  const allCount = useMemo(() => cartList.reduce((acc, item) => acc + item.count, 0), [cartList]);
 
   return (
     <header className={styles['header']}>
@@ -15,18 +21,21 @@ function Header() {
         <Link to="/books" className={styles['title']}>
           X-course task / Sitailo Oleksandr
         </Link>
-        <div className={styles['control']}>
-          <button className={styles['button-cart']} onClick={() => navigate('/cart')}>
-            <img src={cartIcon} alt="cart" />
-          </button>
-          <Button onClick={() => console.log('Sign out')} typeStyleBtn="transparent">
-            Sign out
-          </Button>
-          <div className={styles['user']}>
-            <img src={avatarImage} alt="avatar" className={styles['avatar']} />
-            <p className={styles['name']}>Username</p>
+        {username && (
+          <div className={styles['control']}>
+            <button className={styles['button-cart']} onClick={() => navigate('/cart')}>
+              <img src={cartIcon} alt="cart" />
+              {allCount > 0 && <span className={styles['badge']}>{allCount}</span>}
+            </button>
+            <Button onClick={() => signOut()} typeStyleBtn="transparent">
+              Sign out
+            </Button>
+            <div className={styles['user']}>
+              <img src={avatarImage} alt="avatar" className={styles['avatar']} />
+              <p className={styles['name']}>{username}</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </header>
   );

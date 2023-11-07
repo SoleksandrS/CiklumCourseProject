@@ -10,7 +10,7 @@ import styles from './Header.module.scss';
 
 function Header() {
   const { cartList } = useCartContext();
-  const { signOut } = useUserContext();
+  const { username, signOut } = useUserContext();
   const navigate = useNavigate();
 
   const allCount = useMemo(() => cartList.reduce((acc, item) => acc + item.count, 0), [cartList]);
@@ -21,19 +21,21 @@ function Header() {
         <Link to="/books" className={styles['title']}>
           X-course task / Sitailo Oleksandr
         </Link>
-        <div className={styles['control']}>
-          <button className={styles['button-cart']} onClick={() => navigate('/cart')}>
-            <img src={cartIcon} alt="cart" />
-            {allCount > 0 && <span className={styles['badge']}>{allCount}</span>}
-          </button>
-          <Button onClick={() => signOut()} typeStyleBtn="transparent">
-            Sign out
-          </Button>
-          <div className={styles['user']}>
-            <img src={avatarImage} alt="avatar" className={styles['avatar']} />
-            <p className={styles['name']}>Username</p>
+        {username && (
+          <div className={styles['control']}>
+            <button className={styles['button-cart']} onClick={() => navigate('/cart')}>
+              <img src={cartIcon} alt="cart" />
+              {allCount > 0 && <span className={styles['badge']}>{allCount}</span>}
+            </button>
+            <Button onClick={() => signOut()} typeStyleBtn="transparent">
+              Sign out
+            </Button>
+            <div className={styles['user']}>
+              <img src={avatarImage} alt="avatar" className={styles['avatar']} />
+              <p className={styles['name']}>{username}</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </header>
   );

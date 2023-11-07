@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Footer, Header } from '../../components';
 import { useBooksContext, useCartContext, useUserContext } from '../../contexts';
@@ -12,18 +12,26 @@ function MainLayout() {
 
   useEffect(() => console.log(username), [username]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    setIsLoading(true);
     loadBooks();
     loadCartList();
     loadUsername();
+    setIsLoading(false);
   }, [loadBooks, loadCartList, loadUsername]);
 
   return (
     <div className={styles['main-layout']}>
       <Header />
-      <main className={styles['main']}>
-        <Outlet />
-      </main>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <main className={styles['main']}>
+          <Outlet />
+        </main>
+      )}
       <Footer />
     </div>
   );

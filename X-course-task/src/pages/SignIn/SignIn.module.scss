@@ -1,4 +1,5 @@
 @import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
 
 .sign-in {
   display: flex;
@@ -15,6 +16,11 @@
   border: 3px solid $colorBackgroundDark1;
   border-radius: 50%;
   padding: 3px;
+
+  @include mediaMobile {
+    height: 200px;
+    width: 200px;
+  }
 }
 
 .form {
@@ -22,6 +28,10 @@
   flex-direction: column;
   gap: 15px;
   width: 200px;
+
+  @include mediaMobile {
+    width: 100%;
+  }
 }
 
 .row {
@@ -33,9 +43,23 @@
 
 .label {
   font-size: 1.6rem;
+
+  @include mediaMobile {
+    font-size: 2rem;
+  }
 }
 
 .input {
-  width: 200px;
+  width: 100%;
   text-align: center;
+
+  @include mediaMobile {
+    padding: 10px 15px;
+  }
+}
+
+.btn {
+  @include mediaMobile {
+    padding: 10px 15px;
+  }
 }

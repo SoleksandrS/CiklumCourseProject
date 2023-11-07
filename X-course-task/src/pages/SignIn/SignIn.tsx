@@ -37,7 +37,7 @@ function SignIn() {
             onChange={(event) => setInputValue(event.target.value)}
           />
         </div>
-        <Button type="submit" typeStyleBtn="primary">
+        <Button type="submit" typeStyleBtn="primary" className={styles['btn']}>
           Sign-In
         </Button>
       </form>

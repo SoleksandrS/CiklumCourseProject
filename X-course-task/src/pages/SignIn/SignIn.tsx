@@ -1,4 +1,5 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { useUserContext } from '../../contexts';
 import { Button, Input } from '../../components';
 
 import avatarImage from '../../assets/images/avatar.png';
@@ -6,10 +7,17 @@ import avatarImage from '../../assets/images/avatar.png';
 import styles from './SignIn.module.scss';
 
 function SignIn() {
-  const onSubmitHandler = useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(event);
-  }, []);
+  const { signIn } = useUserContext();
+
+  const [inputValue, setInputValue] = useState('');
+
+  const onSubmitHandler = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      signIn(inputValue);
+    },
+    [inputValue, signIn]
+  );
 
   return (
     <div className={styles['sign-in']}>
@@ -25,6 +33,8 @@ function SignIn() {
             id="user-name"
             name="user-name"
             placeholder="type Username"
+            value={inputValue}
+            onChange={(event) => setInputValue(event.target.value)}
           />
         </div>
         <Button type="submit" typeStyleBtn="primary">

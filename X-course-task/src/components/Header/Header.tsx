@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCartContext } from '../../contexts';
+import { useCartContext, useUserContext } from '../../contexts';
 import { Button } from '../';
 
 import cartIcon from '../../assets/icons/cart.svg';
@@ -10,6 +10,7 @@ import styles from './Header.module.scss';
 
 function Header() {
   const { cartList } = useCartContext();
+  const { signOut } = useUserContext();
   const navigate = useNavigate();
 
   const allCount = useMemo(() => cartList.reduce((acc, item) => acc + item.count, 0), [cartList]);
@@ -25,7 +26,7 @@ function Header() {
             <img src={cartIcon} alt="cart" />
             {allCount > 0 && <span className={styles['badge']}>{allCount}</span>}
           </button>
-          <Button onClick={() => console.log('Sign out')} typeStyleBtn="transparent">
+          <Button onClick={() => signOut()} typeStyleBtn="transparent">
             Sign out
           </Button>
           <div className={styles['user']}>

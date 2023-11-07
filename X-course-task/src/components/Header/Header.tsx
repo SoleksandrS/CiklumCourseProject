@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useBooksContext } from '../../contexts';
+import { useCartContext } from '../../contexts';
 import { Button } from '../';
 
 import cartIcon from '../../assets/icons/cart.svg';
@@ -9,7 +9,7 @@ import avatarImage from '../../assets/images/avatar.png';
 import styles from './Header.module.scss';
 
 function Header() {
-  const { cartList } = useBooksContext();
+  const { cartList } = useCartContext();
   const navigate = useNavigate();
 
   const allCount = useMemo(() => cartList.reduce((acc, item) => acc + item.count, 0), [cartList]);

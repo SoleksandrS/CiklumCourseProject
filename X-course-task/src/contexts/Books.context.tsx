@@ -4,66 +4,29 @@ import BookType from '../types/BookType';
 
 import booksJSON from '../assets/data/books.json';
 
-type CartItem = {
-  id: BookType['id'];
-  count: number;
-};
-
 interface BooksContextType {
   books: BookType[];
   loadBooks: () => void;
-  cartList: CartItem[];
-  loadCartList: () => void;
-  addToCart: (id: CartItem['id'], count: CartItem['count']) => void;
-  toPurchase: () => void;
 }
 
 const BooksContext = createContext<BooksContextType>({
   books: [],
-  loadBooks: () => console.log('Load Books'),
-  cartList: [],
-  loadCartList: () => console.log('Load Cart list'),
-  addToCart: () => console.log('Add to cart'),
-  toPurchase: () => console.log('To purchase')
+  loadBooks: () => console.log('Load Books')
 });
 
 export const BooksProvider = (props: { children: React.ReactNode }) => {
   const [books, setBooks] = useState<BookType[]>([]);
-  const [cartList, setCartList] = useState<CartItem[]>([]);
 
   const loadBooks = useCallback(() => {
     setBooks(booksJSON);
   }, []);
 
-  const addToCart = useCallback(
-    (id: CartItem['id'], count: CartItem['count']) => {
-      const newArr = cartList.concat([{ id, count }]);
-      setCartList(newArr);
-      localStorage.setItem('cart-list', JSON.stringify(newArr));
-    },
-    [cartList]
-  );
-
-  const toPurchase = useCallback(() => {
-    setCartList([]);
-    localStorage.removeItem('cart-list');
-  }, []);
-
-  const loadCartList = useCallback(() => {
-    const arr = JSON.parse(localStorage.getItem('cart-list') ?? '[]');
-    setCartList(arr);
-  }, []);
-
   const value = useMemo(
     () => ({
       books,
-      loadBooks,
-      cartList,
-      loadCartList,
-      addToCart,
-      toPurchase
+      loadBooks
     }),
-    [books, loadBooks, cartList, loadCartList, addToCart, toPurchase]
+    [books, loadBooks]
   );
 
   return <BooksContext.Provider value={value}>{props.children}</BooksContext.Provider>;

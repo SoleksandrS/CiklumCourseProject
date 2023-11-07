@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useBooksContext } from '../../contexts';
+import { useBooksContext, useCartContext } from '../../contexts';
 import { Button, Input } from '../../components';
 import { NotFound } from '../';
 
@@ -10,7 +10,8 @@ import styles from './Book.module.scss';
 
 function Book() {
   const { id } = useParams();
-  const { books, addToCart } = useBooksContext();
+  const { books } = useBooksContext();
+  const { addToCart } = useCartContext();
 
   const [count, setCount] = useState(1);
 

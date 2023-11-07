@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useBooksContext } from '../../contexts';
+import { useBooksContext, useCartContext } from '../../contexts';
 import { Button } from '../../components';
 
 import cartIcon from '../../assets/icons/cart.svg';
@@ -7,7 +7,8 @@ import cartIcon from '../../assets/icons/cart.svg';
 import styles from './Cart.module.scss';
 
 function Cart() {
-  const { books, cartList, toPurchase } = useBooksContext();
+  const { books } = useBooksContext();
+  const { cartList, toPurchase } = useCartContext();
 
   const displayList = useMemo(() => {
     return cartList.map((item) => {

@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Footer, Header } from '../../components';
-import { useBooksContext } from '../../contexts';
+import { useBooksContext, useCartContext } from '../../contexts';
 
 import styles from './MainLayout.module.scss';
 
 function MainLayout() {
-  const { loadBooks, loadCartList } = useBooksContext();
+  const { loadBooks } = useBooksContext();
+  const { loadCartList } = useCartContext();
 
   useEffect(() => {
     loadBooks();

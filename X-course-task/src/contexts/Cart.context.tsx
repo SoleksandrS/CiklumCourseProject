@@ -31,7 +31,13 @@ export const CartProvider = (props: { children: React.ReactNode }) => {
 
   const addToCart = useCallback(
     (id: CartItemType['id'], count: CartItemType['count']) => {
-      const newArr = cartList.concat([{ id, count }]);
+      let newArr = JSON.parse(JSON.stringify(cartList)) as CartItemType[];
+      const itemInCart = newArr.find((obj) => obj.id === id);
+      if (itemInCart) {
+        itemInCart.count += count;
+      } else {
+        newArr = newArr.concat([{ id, count }]);
+      }
       setCartList(newArr);
       localStorage.setItem('cart-list', JSON.stringify(newArr));
     },

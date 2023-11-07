@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useUserContext } from '../../contexts';
 import { Button, Input } from '../../components';
 
@@ -10,6 +10,11 @@ function SignIn() {
   const { signIn } = useUserContext();
 
   const [inputValue, setInputValue] = useState('');
+
+  const isValidValue = useMemo(
+    () => inputValue.length >= 4 && inputValue.length <= 16,
+    [inputValue]
+  );
 
   const onSubmitHandler = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +42,11 @@ function SignIn() {
             onChange={(event) => setInputValue(event.target.value)}
           />
         </div>
-        <Button type="submit" typeStyleBtn="primary" className={styles['btn']}>
+        <Button
+          disabled={!isValidValue}
+          type="submit"
+          typeStyleBtn="primary"
+          className={styles['btn']}>
           Sign-In
         </Button>
       </form>

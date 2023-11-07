@@ -8,9 +8,7 @@ import styles from './MainLayout.module.scss';
 function MainLayout() {
   const { loadBooks } = useBooksContext();
   const { loadCartList } = useCartContext();
-  const { username, loadUsername } = useUserContext();
-
-  useEffect(() => console.log(username), [username]);
+  const { loadUsername } = useUserContext();
 
   const [isLoading, setIsLoading] = useState(true);
 

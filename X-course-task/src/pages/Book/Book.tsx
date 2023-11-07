@@ -11,14 +11,22 @@ import styles from './Book.module.scss';
 function Book() {
   const { id } = useParams();
   const { books } = useBooksContext();
-  const { addToCart } = useCartContext();
+  const { cartList, addToCart } = useCartContext();
 
   const [count, setCount] = useState(1);
 
   const book = useMemo(() => books.find((obj) => obj.id === +id!), [books, id]);
 
+  const itemInCart = useMemo(() => cartList.find((obj) => obj.id === +id!), [cartList, id]);
+
+  const isBtnDisabled = useMemo(
+    () => book && itemInCart && book.amount <= itemInCart.count,
+    [book, itemInCart]
+  );
+
   const onClickHandler = useCallback(() => {
     if (book) addToCart(book.id, count);
+    setCount(1);
   }, [addToCart, book, count]);
 
   return (
@@ -57,21 +65,29 @@ function Book() {
               <Input
                 className={styles['input']}
                 type="number"
-                min="1"
-                max={book.amount}
                 value={count}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  setCount(+event.target.value)
-                }
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  let subValue = book.amount;
+                  if (itemInCart) subValue -= itemInCart.count;
+                  setCount(Math.max(Math.min(+event.target.value, subValue), 1));
+                }}
               />
             </div>
             <div className={styles['row']}>
               <p>Total price, $</p>
               <span>{(book.price * count).toFixed(2)}</span>
             </div>
-            <Button onClick={onClickHandler} className={styles['btn']} typeStyleBtn="primary">
-              Add to cart
-            </Button>
+            <div className={styles['row']}>
+              {itemInCart && <p>In the cart: {itemInCart.count}</p>}
+              <Button
+                disabled={isBtnDisabled}
+                onClick={onClickHandler}
+                className={styles['btn']}
+                typeStyleBtn="primary"
+                title={isBtnDisabled ? 'You have added the maximum quantity to your cart' : ''}>
+                Add to cart
+              </Button>
+            </div>
           </div>
         </div>
       ) : (

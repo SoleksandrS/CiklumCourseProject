@@ -8,14 +8,15 @@ import styles from './MainLayout.module.scss';
 function MainLayout() {
   const { loadBooks } = useBooksContext();
   const { loadCartList } = useCartContext();
-  const { username } = useUserContext();
+  const { username, loadUsername } = useUserContext();
 
   useEffect(() => console.log(username), [username]);
 
   useEffect(() => {
     loadBooks();
     loadCartList();
-  }, [loadBooks, loadCartList]);
+    loadUsername();
+  }, [loadBooks, loadCartList, loadUsername]);
 
   return (
     <div className={styles['main-layout']}>

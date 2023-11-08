@@ -47,12 +47,12 @@ function Book() {
           <div className={styles['info-block']}>
             <div className={styles['top-info']}>
               <img
+                className={styles['image']}
                 src={book.image}
                 alt={book.title}
                 onError={(event) => {
                   const image = event.target as HTMLImageElement;
                   image.src = notFoundImage;
-                  image.className = styles['not-found-image'];
                 }}
               />
               <div className={styles['column']}>

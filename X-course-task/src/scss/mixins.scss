@@ -1,5 +1,11 @@
 @import "./variables.scss";
 
+@mixin mediaDesktop {
+  @media screen and (max-width: $widthMediaDesktop) {
+    @content;
+  }
+}
+
 @mixin mediaTablet {
   @media screen and (max-width: $widthMediaTablet) {
     @content;

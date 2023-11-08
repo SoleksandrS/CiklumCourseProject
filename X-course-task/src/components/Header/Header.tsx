@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useComponentVisible } from '../../hooks';
 import { useCartContext, useUserContext } from '../../contexts';
 import { Button } from '../';
 
@@ -13,6 +14,8 @@ function Header() {
   const { username, signOut } = useUserContext();
   const navigate = useNavigate();
 
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+
   const allCount = useMemo(() => cartList.reduce((acc, item) => acc + item.count, 0), [cartList]);
 
   return (
@@ -22,18 +25,37 @@ function Header() {
           X-course task / Sitailo Oleksandr
         </Link>
         {username && (
-          <div className={styles['control']}>
-            <button className={styles['button-cart']} onClick={() => navigate('/cart')}>
-              <img src={cartIcon} alt="cart" />
-              {allCount > 0 && <span className={styles['badge']}>{allCount}</span>}
-            </button>
-            <Button onClick={() => signOut()} typeStyleBtn="transparent">
-              Sign out
-            </Button>
-            <div className={styles['user']}>
-              <img src={avatarImage} alt="avatar" className={styles['avatar']} />
-              <p className={styles['name']}>{username}</p>
+          <div className={styles['control']} ref={ref}>
+            <div
+              className={`${styles['list']} ${isComponentVisible ? styles['active-burger'] : ''}`}>
+              <button
+                className={styles['button-cart']}
+                onClick={() => {
+                  navigate('/cart');
+                  setIsComponentVisible(false);
+                }}>
+                <img src={cartIcon} alt="cart" />
+                {allCount > 0 && <span className={styles['badge']}>{allCount}</span>}
+              </button>
+              <Button
+                onClick={() => {
+                  signOut();
+                  setIsComponentVisible(false);
+                }}
+                typeStyleBtn="transparent">
+                Sign out
+              </Button>
+              <div className={styles['user']}>
+                <img src={avatarImage} alt="avatar" className={styles['avatar']} />
+                <p className={styles['name']}>{username}</p>
+              </div>
             </div>
+            <Button
+              className={styles['burger-btn']}
+              onClick={() => setIsComponentVisible((prev) => !prev)}
+              typeStyleBtn="transparent">
+              <span className={styles['line']}></span>
+            </Button>
           </div>
         )}
       </div>

@@ -1,4 +1,5 @@
 @import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
 
 .header {
   height: $heightHeader;
@@ -7,6 +8,14 @@
   align-items: center;
   padding: 0 $sidePadding;
   border-bottom: 2px solid $colorBackgroundDark1;
+  position: relative;
+
+  @include mediaTablet {
+    padding: 0 $sidePaddingTablet;
+  }
+  @include mediaMobile {
+    padding: 0 $sidePaddingMobile;
+  }
 }
 
 .inner {
@@ -19,12 +28,46 @@
 .title {
   font-size: 2.2rem;
   color: $colorContent;
+
+  @include mediaTablet {
+    font-size: 1.9rem;
+  }
+
+  @include mediaMobile {
+    font-size: 1.8rem;
+  }
 }
 
-.control {
+.list {
   display: flex;
   gap: 15px;
   align-items: center;
+
+  @include mediaTablet {
+    flex-direction: column;
+    position: absolute;
+    bottom: -5px;
+    right: -500px;
+    transform: translate(0, 100%);
+    background-color: $colorBackground;
+    border: 2px solid $colorBackgroundDark1;
+    padding: 10px;
+    align-items: flex-start;
+    min-width: 200px;
+    z-index: 5;
+    border-radius: 5px;
+    transition: right .3s ease;
+
+    &.active-burger {
+      right: $sidePaddingTablet;
+    }
+  }
+
+  @include mediaMobile {
+    &.active-burger {
+      right: $sidePaddingMobile;
+    }
+  }
 }
 
 .button-cart {
@@ -59,6 +102,17 @@
     justify-content: center;
     align-items: center;
   }
+
+  @include mediaTablet {
+    &::after {
+      content: 'Cart';
+      position: absolute;
+      top: 50%;
+      right: -15px;
+      transform: translate(100%, -50%);
+      font-size: 1.6rem;
+    }
+  }
 }
 
 .user {
@@ -73,5 +127,49 @@
 
   .name {
     font-size: 1.6rem;
+  }
+
+  @include mediaTablet {
+    order: -1;
+  }
+}
+
+.burger-btn {
+  display: none;
+
+  @include mediaTablet {
+    border: none;
+    display: flex;
+    height: 30px;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+
+    .line {
+      height: 2px;
+      width: 18px;
+      background-color: $colorContent;
+      border-radius: 2px;
+      position: relative;
+      &::before, &::after {
+        content: '';
+        left: 0;
+        height: 2px;
+        width: 18px;
+        background-color: $colorContent;
+        border-radius: 2px;
+        position: absolute;
+      }
+      &::before {
+        top: -4px;
+      }
+      &::after {
+        bottom: -4px;
+      }
+    }
   }
 }

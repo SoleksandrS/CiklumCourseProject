@@ -65,9 +65,66 @@
   align-items: center;
 }
 
+.input-block {
+  position: relative;
+
+  &:hover {
+    .input {
+      border-color: $colorPrimaryLight1;
+    }
+  }
+}
+
 .input {
-  width: 80px;
+  width: 100px;
   text-align: center;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.btn-control {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 2.8px);
+  top: 0;
+  width: 30px;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  margin: 1.4px;
+  transition: color .3s ease,
+              background-color .3s ease;
+
+  &:hover {
+    background-color: $colorPrimaryLight1;
+    color: $colorContentLightMax;
+  }
+
+  &:active {
+    background-color: $colorPrimaryDark;
+
+    & ~ .input {
+      border-color: $colorPrimaryLight1;
+    }
+  }
+
+  &.left {
+    left: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  &.right {
+    right: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
 }
 
 .btn {

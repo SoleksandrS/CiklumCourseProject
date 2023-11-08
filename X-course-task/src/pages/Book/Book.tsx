@@ -24,6 +24,17 @@ function Book() {
     [book, itemInCart]
   );
 
+  const onChangeCount = useCallback(
+    (value: number) => {
+      if (book) {
+        let subValue = book.amount;
+        if (itemInCart) subValue -= itemInCart.count;
+        setCount(Math.max(Math.min(value, subValue), 1));
+      }
+    },
+    [book, itemInCart]
+  );
+
   const onClickHandler = useCallback(() => {
     if (book) addToCart(book.id, count);
     setCount(1);
@@ -62,16 +73,26 @@ function Book() {
             </div>
             <div className={styles['row']}>
               <p>Count</p>
-              <Input
-                className={styles['input']}
-                type="number"
-                value={count}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  let subValue = book.amount;
-                  if (itemInCart) subValue -= itemInCart.count;
-                  setCount(Math.max(Math.min(+event.target.value, subValue), 1));
-                }}
-              />
+              <div className={styles['input-block']}>
+                <button
+                  className={`${styles['btn-control']} ${styles['left']}`}
+                  onClick={() => onChangeCount(count - 1)}>
+                  -
+                </button>
+                <button
+                  className={`${styles['btn-control']} ${styles['right']}`}
+                  onClick={() => onChangeCount(count + 1)}>
+                  +
+                </button>
+                <Input
+                  className={styles['input']}
+                  type="number"
+                  value={count}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    onChangeCount(+event.target.value)
+                  }
+                />
+              </div>
             </div>
             <div className={styles['row']}>
               <p>Total price, $</p>

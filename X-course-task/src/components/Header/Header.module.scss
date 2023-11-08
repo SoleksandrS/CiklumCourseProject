@@ -22,6 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   width: 100%;
 }
 
@@ -35,7 +36,14 @@
 
   @include mediaMobile {
     font-size: 1.8rem;
+    width: 150px;
   }
+}
+
+.control {
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
 .list {
@@ -71,8 +79,8 @@
 }
 
 .button-cart {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 5px;
   padding: 1px;
   border: none;
@@ -101,17 +109,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  @include mediaTablet {
-    &::after {
-      content: 'Cart';
-      position: absolute;
-      top: 50%;
-      right: -15px;
-      transform: translate(100%, -50%);
-      font-size: 1.6rem;
-    }
   }
 }
 

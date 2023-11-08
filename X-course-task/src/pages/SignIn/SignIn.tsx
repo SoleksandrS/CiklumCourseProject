@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../contexts';
 import { Button, Input } from '../../components';
 
@@ -8,6 +9,7 @@ import styles from './SignIn.module.scss';
 
 function SignIn() {
   const { signIn } = useUserContext();
+  const navigate = useNavigate();
 
   const [inputValue, setInputValue] = useState('');
 
@@ -20,8 +22,9 @@ function SignIn() {
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       signIn(inputValue);
+      navigate('/books');
     },
-    [inputValue, signIn]
+    [inputValue, navigate, signIn]
   );
 
   return (

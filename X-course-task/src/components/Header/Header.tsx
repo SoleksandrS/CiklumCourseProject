@@ -49,7 +49,9 @@ function Header() {
                 </div>
               </div>
               <Button
-                className={styles['burger-btn']}
+                className={`${styles['burger-btn']} ${
+                  isComponentVisible ? styles['active-burger'] : ''
+                }`}
                 onClick={() => setIsComponentVisible((prev) => !prev)}
                 typeStyleBtn="transparent">
                 <span className={styles['line']}></span>

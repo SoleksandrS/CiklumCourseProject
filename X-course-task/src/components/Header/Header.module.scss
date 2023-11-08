@@ -160,12 +160,47 @@
         background-color: $colorContent;
         border-radius: 2px;
         position: absolute;
+        transition: top 0.2s 0.3s ease, 
+                bottom 0.2s 0.3s ease,
+                width 0.1s 0.2s ease,
+                transform 0.2s ease,
+                background-color .3s ease;
       }
       &::before {
         top: -4px;
       }
       &::after {
         bottom: -4px;
+      }
+
+    }
+    &.active-burger {
+      .line {
+        background-color: transparent;
+        transition: background-color 0.1s 0.3s ease;
+        &::before, &::after {
+          background-color: $colorContent;
+          left: -1px;
+          width: 20px;
+        }
+        &::before {
+          transform: rotate(45deg);
+          top: 0;
+          transition: top 0.3s ease,
+                      left 0.1s 0.3s ease,
+                      width 0.1s 0.3s ease,
+                      transform 0.3s 0.4s ease,
+                      background-color .3s ease;
+        }
+        &::after {
+          transform: rotate(-45deg);
+          bottom: 0;
+          transition: bottom 0.3s ease,
+                      left 0.1s 0.3s ease,
+                      width 0.1s 0.3s ease,
+                      transform 0.3s 0.4s ease,
+                      background-color .3s ease;
+        }
       }
     }
   }

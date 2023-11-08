@@ -1,3 +1,5 @@
+@import "../../scss/mixins.scss";
+
 .not-found {
   display: flex;
   align-items: center;
@@ -11,10 +13,22 @@
   align-items: center;
   gap: 15px;
   position: relative;
+
+  @include mediaTablet {
+    gap: 10px;
+  }
+  @include mediaMobile {
+    gap: 5px;
+  }
 }
 
 .title {
   font-size: 4rem;
+
+  @include mediaTablet {
+    font-size: 2.5rem;
+    text-align: center;
+  }
 }
 
 .code {
@@ -25,4 +39,14 @@
   transform: translate(-50%, -50%);
   opacity: 0.1;
   z-index: -1;
+
+  @include mediaTablet {
+    font-size: 30rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 25rem;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 20rem;
+  }
 }

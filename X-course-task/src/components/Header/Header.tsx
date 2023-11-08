@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useComponentVisible } from '../../hooks';
 import { useCartContext, useUserContext } from '../../contexts';
 import { Button } from '../';
 
@@ -12,6 +13,8 @@ function Header() {
   const { cartList } = useCartContext();
   const { username, signOut } = useUserContext();
   const navigate = useNavigate();
+
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
 
   const allCount = useMemo(() => cartList.reduce((acc, item) => acc + item.count, 0), [cartList]);
 
@@ -27,12 +30,32 @@ function Header() {
               <img src={cartIcon} alt="cart" />
               {allCount > 0 && <span className={styles['badge']}>{allCount}</span>}
             </button>
-            <Button onClick={() => signOut()} typeStyleBtn="transparent">
-              Sign out
-            </Button>
-            <div className={styles['user']}>
-              <img src={avatarImage} alt="avatar" className={styles['avatar']} />
-              <p className={styles['name']}>{username}</p>
+            <div ref={ref}>
+              <div
+                className={`${styles['list']} ${
+                  isComponentVisible ? styles['active-burger'] : ''
+                }`}>
+                <Button
+                  onClick={() => {
+                    signOut();
+                    setIsComponentVisible(false);
+                  }}
+                  typeStyleBtn="transparent">
+                  Sign out
+                </Button>
+                <div className={styles['user']}>
+                  <img src={avatarImage} alt="avatar" className={styles['avatar']} />
+                  <p className={styles['name']}>{username}</p>
+                </div>
+              </div>
+              <Button
+                className={`${styles['burger-btn']} ${
+                  isComponentVisible ? styles['active-burger'] : ''
+                }`}
+                onClick={() => setIsComponentVisible((prev) => !prev)}
+                typeStyleBtn="transparent">
+                <span className={styles['line']}></span>
+              </Button>
             </div>
           </div>
         )}

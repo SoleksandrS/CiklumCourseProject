@@ -7,13 +7,17 @@
   height: 100vh;
   max-width: 1440px;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .main {
   flex: 1 1;
   padding: 10px $sidePadding;
 
+  @include mediaTablet {
+    padding: 10px $sidePaddingTablet;
+  }
   @include mediaMobile {
-    padding: 10px 8px;
+    padding: 10px $sidePaddingMobile;
   }
 }

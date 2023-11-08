@@ -1,4 +1,5 @@
 @import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
 
 .main-layout {
   display: flex;
@@ -11,4 +12,8 @@
 .main {
   flex: 1 1;
   padding: 10px $sidePadding;
+
+  @include mediaMobile {
+    padding: 10px 8px;
+  }
 }

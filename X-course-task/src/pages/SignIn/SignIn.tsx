@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../contexts';
 import { Button, Input } from '../../components';
 
@@ -8,15 +9,22 @@ import styles from './SignIn.module.scss';
 
 function SignIn() {
   const { signIn } = useUserContext();
+  const navigate = useNavigate();
 
   const [inputValue, setInputValue] = useState('');
+
+  const isValidValue = useMemo(
+    () => inputValue.length >= 4 && inputValue.length <= 16,
+    [inputValue]
+  );
 
   const onSubmitHandler = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       signIn(inputValue);
+      navigate('/books');
     },
-    [inputValue, signIn]
+    [inputValue, navigate, signIn]
   );
 
   return (
@@ -37,7 +45,11 @@ function SignIn() {
             onChange={(event) => setInputValue(event.target.value)}
           />
         </div>
-        <Button type="submit" typeStyleBtn="primary">
+        <Button
+          disabled={!isValidValue}
+          type="submit"
+          typeStyleBtn="primary"
+          className={styles['btn']}>
           Sign-In
         </Button>
       </form>

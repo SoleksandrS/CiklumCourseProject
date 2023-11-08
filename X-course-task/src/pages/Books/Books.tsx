@@ -1,7 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import { useBooksContext } from '../../contexts';
 import { BookCard, Input, Select } from '../../components';
-import BookType from '../../types/BookType';
 
 import styles from './Books.module.scss';
 
@@ -9,11 +8,11 @@ function Books() {
   const { books } = useBooksContext();
 
   const [searchValue, setSearchValue] = useState('');
-  const [sortValue, setSortValue] = useState('');
+  const [filterValue, setFilterValue] = useState('first');
 
   const refSearchInput = useRef<HTMLInputElement>(null);
 
-  const filteredList = useMemo(
+  const filteredBySearch = useMemo(
     () => books.filter((book) => book.title.toLowerCase().includes(searchValue.toLowerCase())),
     [books, searchValue]
   );
@@ -21,39 +20,37 @@ function Books() {
   const optionList = useMemo(
     () => [
       {
-        value: 'title-asc',
-        title: 'Title ASC'
+        value: 'first',
+        title: 'Any price'
       },
       {
-        value: 'title-desc',
-        title: 'Title DESC'
+        value: 'second',
+        title: 'Up to $15'
       },
       {
-        value: 'price-asc',
-        title: 'Price ASC'
+        value: 'third',
+        title: '$15 - $30'
       },
       {
-        value: 'price-desc',
-        title: 'Price DESC'
+        value: 'fourth',
+        title: 'More than $30'
       }
     ],
     []
   );
 
-  const sortedList = useMemo(() => {
-    if (sortValue === '') return filteredList;
-    const [value, order] = sortValue.split('-');
-
-    if (order === 'desc') {
-      return filteredList.sort((a, b) =>
-        a[value as keyof BookType] < b[value as keyof BookType] ? 1 : -1
-      );
-    } else {
-      return filteredList.sort((a, b) =>
-        a[value as keyof BookType] > b[value as keyof BookType] ? 1 : -1
-      );
+  const filteredByPrice = useMemo(() => {
+    switch (filterValue) {
+      case 'second':
+        return filteredBySearch.filter((obj) => obj.price < 15);
+      case 'third':
+        return filteredBySearch.filter((obj) => obj.price >= 15 && obj.price < 30);
+      case 'fourth':
+        return filteredBySearch.filter((obj) => obj.price >= 30);
+      default:
+        return filteredBySearch;
     }
-  }, [filteredList, sortValue]);
+  }, [filteredBySearch, filterValue]);
 
   return (
     <div className={styles['books']}>
@@ -75,13 +72,12 @@ function Books() {
         </div>
         <Select
           options={optionList}
-          onSelect={(value) => setSortValue(value)}
-          selectedValue={sortValue}
-          placeholder="Sort by"
+          onSelect={(value) => setFilterValue(value)}
+          selectedValue={filterValue}
         />
       </div>
       <ul className={styles['list']}>
-        {sortedList.map((book) => (
+        {filteredByPrice.map((book) => (
           <li key={`book-${book.id}`}>
             <BookCard book={book} />
           </li>

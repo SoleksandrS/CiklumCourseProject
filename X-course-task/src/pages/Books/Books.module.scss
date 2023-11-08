@@ -9,10 +9,19 @@
 .control {
   display: flex;
   gap: 10px;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+
+    & > * {
+      width: 100% !important;
+    }
+  }
 }
 
 .search-bar {
   position: relative;
+  width: 400px;
 }
 
 .icon {
@@ -28,20 +37,8 @@
 }
 
 .input {
-  width: 400px;
+  width: 100%;
   padding-right: 35px;
-}
-
-.select {
-  padding: 8px 10px;
-  font-size: 1.5rem;
-  border-radius: 5px;
-  border: 2px solid $colorBackgroundDark1;
-  transition: border-color .3s ease;
-
-  &:focus {
-    border-color: $colorPrimaryLight1;
-  }
 }
 
 .list {

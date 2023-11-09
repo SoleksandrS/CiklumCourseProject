@@ -50,19 +50,23 @@ jest.mock('react-router-dom', () => ({
   useParams: () => ({ id: '1' })
 }));
 
+const renderComponent = () => {
+  return render(
+    <BooksContext.Provider value={mockBooksValue}>
+      <CartContext.Provider value={mockCartValue}>
+        <MemoryRouter initialEntries={['/books/1']}>
+          <Routes>
+            <Route path="/books/1" element={<BookComponent />} />
+          </Routes>
+        </MemoryRouter>
+      </CartContext.Provider>
+    </BooksContext.Provider>
+  );
+};
+
 describe('Book component', () => {
   test('renders BookComponent', () => {
-    render(
-      <BooksContext.Provider value={mockBooksValue}>
-        <CartContext.Provider value={mockCartValue}>
-          <MemoryRouter initialEntries={['/books/1']}>
-            <Routes>
-              <Route path="/books/1" element={<BookComponent />} />
-            </Routes>
-          </MemoryRouter>
-        </CartContext.Provider>
-      </BooksContext.Provider>
-    );
+    renderComponent();
 
     const titleElement = screen.getByText(mockBooksValue.books[0].title);
     const imageElement = screen.getByAltText(mockBooksValue.books[0].title);
@@ -75,17 +79,7 @@ describe('Book component', () => {
   });
 
   test('change count via input', () => {
-    render(
-      <BooksContext.Provider value={mockBooksValue}>
-        <CartContext.Provider value={mockCartValue}>
-          <MemoryRouter initialEntries={['/books/1']}>
-            <Routes>
-              <Route path="/books/1" element={<BookComponent />} />
-            </Routes>
-          </MemoryRouter>
-        </CartContext.Provider>
-      </BooksContext.Provider>
-    );
+    renderComponent();
 
     const values = [5, 8, 10, 14, 23, 25];
 
@@ -102,17 +96,7 @@ describe('Book component', () => {
   });
 
   test('change count via btn minus', () => {
-    render(
-      <BooksContext.Provider value={mockBooksValue}>
-        <CartContext.Provider value={mockCartValue}>
-          <MemoryRouter initialEntries={['/books/1']}>
-            <Routes>
-              <Route path="/books/1" element={<BookComponent />} />
-            </Routes>
-          </MemoryRouter>
-        </CartContext.Provider>
-      </BooksContext.Provider>
-    );
+    renderComponent();
 
     const values = [7, 13, 18, 22, 25, 28];
 
@@ -131,17 +115,7 @@ describe('Book component', () => {
   });
 
   test('change count via btn add', () => {
-    render(
-      <BooksContext.Provider value={mockBooksValue}>
-        <CartContext.Provider value={mockCartValue}>
-          <MemoryRouter initialEntries={['/books/1']}>
-            <Routes>
-              <Route path="/books/1" element={<BookComponent />} />
-            </Routes>
-          </MemoryRouter>
-        </CartContext.Provider>
-      </BooksContext.Provider>
-    );
+    renderComponent();
 
     const values = [4, 5, 14, 20, 21, 26];
 
@@ -160,17 +134,7 @@ describe('Book component', () => {
   });
 
   test('add to cart', async () => {
-    render(
-      <BooksContext.Provider value={mockBooksValue}>
-        <CartContext.Provider value={mockCartValue}>
-          <MemoryRouter initialEntries={['/books/1']}>
-            <Routes>
-              <Route path="/books/1" element={<BookComponent />} />
-            </Routes>
-          </MemoryRouter>
-        </CartContext.Provider>
-      </BooksContext.Provider>
-    );
+    renderComponent();
 
     const inputCount = screen.getByTestId('input-count');
     const btnAddToCart = screen.getByTestId('btn-add-to-cart');

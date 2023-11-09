@@ -30,11 +30,18 @@ const mockCartValue = {
   cartList: [
     {
       id: 1,
-      count: 2
+      count: 3
     }
   ],
   loadCartList: () => console.log('Load cart'),
-  addToCart: () => console.log('Add to cart'),
+  addToCart: (id: number, count: number) => {
+    const itemInCart = mockCartValue.cartList.find((obj) => obj.id === id);
+    if (itemInCart) {
+      itemInCart.count += count;
+    } else {
+      mockCartValue.cartList.push({ id, count });
+    }
+  },
   toPurchase: () => console.log('To purchase')
 };
 
@@ -150,5 +157,45 @@ describe('Book component', () => {
       fireEvent.click(btnAddCount);
       expect(inputCount.getAttribute('value')).toBe(`${value + 1}`);
     });
+  });
+
+  test('add to cart', async () => {
+    render(
+      <BooksContext.Provider value={mockBooksValue}>
+        <CartContext.Provider value={mockCartValue}>
+          <MemoryRouter initialEntries={['/books/1']}>
+            <Routes>
+              <Route path="/books/1" element={<BookComponent />} />
+            </Routes>
+          </MemoryRouter>
+        </CartContext.Provider>
+      </BooksContext.Provider>
+    );
+
+    const inputCount = screen.getByTestId('input-count');
+    const btnAddToCart = screen.getByTestId('btn-add-to-cart');
+    const addedCount = screen.getByTestId('added-in-cart');
+
+    expect(addedCount.textContent).toBe('3');
+    fireEvent.change(inputCount, {
+      target: {
+        value: '35'
+      }
+    });
+    fireEvent.click(btnAddToCart);
+    expect(inputCount.getAttribute('value')).toBe('1');
+    expect(addedCount.textContent).toBe('38');
+
+    fireEvent.change(inputCount, {
+      target: {
+        value: '100'
+      }
+    });
+    expect(inputCount.getAttribute('value')).toBe(
+      `${Math.max(mockBooksValue.books[0].amount - mockCartValue.cartList[0].count, 1)}`
+    );
+    fireEvent.click(btnAddToCart);
+    expect(inputCount.getAttribute('value')).toBe('1');
+    expect(addedCount.textContent).toBe(`${mockBooksValue.books[0].amount}`);
   });
 });

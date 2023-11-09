@@ -76,12 +76,14 @@ function Book() {
               <div className={styles['input-block']}>
                 <button
                   className={`${styles['btn-control']} ${styles['left']}`}
-                  onClick={() => onChangeCount(count - 1)}>
+                  onClick={() => onChangeCount(count - 1)}
+                  data-testid="btn-minus-count">
                   -
                 </button>
                 <button
                   className={`${styles['btn-control']} ${styles['right']}`}
-                  onClick={() => onChangeCount(count + 1)}>
+                  onClick={() => onChangeCount(count + 1)}
+                  data-testid="btn-add-count">
                   +
                 </button>
                 <Input
@@ -91,6 +93,7 @@ function Book() {
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     onChangeCount(+event.target.value)
                   }
+                  data-testid="input-count"
                 />
               </div>
             </div>

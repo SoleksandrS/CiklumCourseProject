@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { BooksContext } from '../contexts/Books.context';
@@ -65,5 +65,90 @@ describe('Book component', () => {
     expect(imageElement).toBeInTheDocument();
     expect(imageElement.getAttribute('src')).toEqual(mockBooksValue.books[0].image);
     expect(descriptionElement).toBeInTheDocument();
+  });
+
+  test('change count via input', () => {
+    render(
+      <BooksContext.Provider value={mockBooksValue}>
+        <CartContext.Provider value={mockCartValue}>
+          <MemoryRouter initialEntries={['/books/1']}>
+            <Routes>
+              <Route path="/books/1" element={<BookComponent />} />
+            </Routes>
+          </MemoryRouter>
+        </CartContext.Provider>
+      </BooksContext.Provider>
+    );
+
+    const values = [5, 8, 10, 14, 23, 25];
+
+    const inputCount = screen.getByTestId('input-count');
+
+    values.forEach((value) => {
+      fireEvent.change(inputCount, {
+        target: {
+          value
+        }
+      });
+      expect(inputCount.getAttribute('value')).toBe(`${value}`);
+    });
+  });
+
+  test('change count via btn minus', () => {
+    render(
+      <BooksContext.Provider value={mockBooksValue}>
+        <CartContext.Provider value={mockCartValue}>
+          <MemoryRouter initialEntries={['/books/1']}>
+            <Routes>
+              <Route path="/books/1" element={<BookComponent />} />
+            </Routes>
+          </MemoryRouter>
+        </CartContext.Provider>
+      </BooksContext.Provider>
+    );
+
+    const values = [7, 13, 18, 22, 25, 28];
+
+    const inputCount = screen.getByTestId('input-count');
+    const btnMinusCount = screen.getByTestId('btn-minus-count');
+
+    values.forEach((value) => {
+      fireEvent.change(inputCount, {
+        target: {
+          value
+        }
+      });
+      fireEvent.click(btnMinusCount);
+      expect(inputCount.getAttribute('value')).toBe(`${value - 1}`);
+    });
+  });
+
+  test('change count via btn add', () => {
+    render(
+      <BooksContext.Provider value={mockBooksValue}>
+        <CartContext.Provider value={mockCartValue}>
+          <MemoryRouter initialEntries={['/books/1']}>
+            <Routes>
+              <Route path="/books/1" element={<BookComponent />} />
+            </Routes>
+          </MemoryRouter>
+        </CartContext.Provider>
+      </BooksContext.Provider>
+    );
+
+    const values = [4, 5, 14, 20, 21, 26];
+
+    const inputCount = screen.getByTestId('input-count');
+    const btnAddCount = screen.getByTestId('btn-add-count');
+
+    values.forEach((value) => {
+      fireEvent.change(inputCount, {
+        target: {
+          value
+        }
+      });
+      fireEvent.click(btnAddCount);
+      expect(inputCount.getAttribute('value')).toBe(`${value + 1}`);
+    });
   });
 });

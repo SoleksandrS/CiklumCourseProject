@@ -9,7 +9,7 @@ interface BooksContextType {
   loadBooks: () => void;
 }
 
-const BooksContext = createContext<BooksContextType>({
+export const BooksContext = createContext<BooksContextType>({
   books: [],
   loadBooks: () => console.log('Load Books')
 });

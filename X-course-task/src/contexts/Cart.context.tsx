@@ -14,7 +14,7 @@ interface CartContextType {
   toPurchase: () => void;
 }
 
-const CartContext = createContext<CartContextType>({
+export const CartContext = createContext<CartContextType>({
   cartList: [],
   loadCartList: () => console.log('Load cart'),
   addToCart: () => console.log('Add to cart'),

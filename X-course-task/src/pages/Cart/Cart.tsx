@@ -41,7 +41,7 @@ function Cart() {
                 <li className={styles['item']} key={`cart-item-${item.id}`}>
                   <p className={styles['title']}>{item.title}</p>
                   <p className={styles['count']}>{item.count}</p>
-                  <p className={styles['price']}>{item.price * item.count}</p>
+                  <p className={styles['price']}>{(item.price * item.count).toFixed(2)}</p>
                 </li>
               ))}
             </ul>

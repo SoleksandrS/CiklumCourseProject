@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Footer, Header } from '../../components';
+import { Footer, Header, Loader } from '../../components';
 import { useBooksContext, useCartContext, useUserContext } from '../../contexts';
 
 import styles from './MainLayout.module.scss';
@@ -17,19 +17,21 @@ function MainLayout() {
     loadBooks();
     loadCartList();
     loadUsername();
-    setIsLoading(false);
+    setTimeout(() => setIsLoading(false), 500);
   }, [loadBooks, loadCartList, loadUsername]);
 
   return (
     <div className={styles['main-layout']}>
       <Header />
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <main className={styles['main']}>
+      <main className={styles['main']}>
+        {isLoading ? (
+          <div className={styles['loader-block']}>
+            <Loader size="large" />
+          </div>
+        ) : (
           <Outlet />
-        </main>
-      )}
+        )}
+      </main>
       <Footer />
     </div>
   );

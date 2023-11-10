@@ -71,36 +71,44 @@ function Book() {
               <p>Price, $</p>
               <span>{book.price}</span>
             </div>
-            <div className={styles['row']}>
-              <p>Count</p>
-              <div className={styles['input-block']}>
-                <button
-                  className={`${styles['btn-control']} ${styles['left']}`}
-                  onClick={() => onChangeCount(count - 1)}
-                  data-testid="btn-minus-count">
-                  -
-                </button>
-                <button
-                  className={`${styles['btn-control']} ${styles['right']}`}
-                  onClick={() => onChangeCount(count + 1)}
-                  data-testid="btn-add-count">
-                  +
-                </button>
-                <Input
-                  className={styles['input']}
-                  type="number"
-                  value={count}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    onChangeCount(+event.target.value)
-                  }
-                  data-testid="input-count"
-                />
+            {!isBtnDisabled ? (
+              <>
+                <div className={styles['row']}>
+                  <p>Count</p>
+                  <div className={styles['input-block']}>
+                    <button
+                      className={`${styles['btn-control']} ${styles['left']}`}
+                      onClick={() => onChangeCount(count - 1)}
+                      data-testid="btn-minus-count">
+                      -
+                    </button>
+                    <button
+                      className={`${styles['btn-control']} ${styles['right']}`}
+                      onClick={() => onChangeCount(count + 1)}
+                      data-testid="btn-add-count">
+                      +
+                    </button>
+                    <Input
+                      className={styles['input']}
+                      type="number"
+                      value={count}
+                      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                        onChangeCount(+event.target.value)
+                      }
+                      data-testid="input-count"
+                    />
+                  </div>
+                </div>
+                <div className={styles['row']}>
+                  <p>Total price, $</p>
+                  <span>{(book.price * count).toFixed(2)}</span>
+                </div>
+              </>
+            ) : (
+              <div className={styles['row']}>
+                <p className={styles['message']}>Maximum quantity added to cart</p>
               </div>
-            </div>
-            <div className={styles['row']}>
-              <p>Total price, $</p>
-              <span>{(book.price * count).toFixed(2)}</span>
-            </div>
+            )}
             <div className={styles['row']}>
               {itemInCart && (
                 <p>
@@ -112,7 +120,6 @@ function Book() {
                 onClick={onClickHandler}
                 className={styles['btn']}
                 typeStyleBtn="primary"
-                title={isBtnDisabled ? 'You have added the maximum quantity to your cart' : ''}
                 data-testid="btn-add-to-cart">
                 Add to cart
               </Button>

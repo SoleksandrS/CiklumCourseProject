@@ -44,6 +44,11 @@ function SignIn() {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
           />
+          {inputValue.length > 0 && !isValidValue && (
+            <p className={styles['error']}>
+              The username must be more than 3 and less than 17 characters.
+            </p>
+          )}
         </div>
         <Button
           disabled={!isValidValue}

@@ -4,6 +4,7 @@ import Button from './Button/Button';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Input from './Input/Input';
+import Loader from './Loader/Loader';
 import Select from './Select/Select';
 
-export { ALink, BookCard, Button, Footer, Header, Input, Select };
+export { ALink, BookCard, Button, Footer, Header, Input, Loader, Select };

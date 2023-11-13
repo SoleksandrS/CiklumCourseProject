@@ -16,11 +16,13 @@ function Routing() {
               <Route path="books/:id" element={<Book />} />
               <Route path="cart" element={<Cart />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="" element={<NotFound />} />
             </>
           ) : (
             <>
               <Route path="signin" element={<SignIn />} />
               <Route path="*" element={<Navigate to="signin" />} />
+              <Route path="" element={<Navigate to="signin" />} />
             </>
           )}
         </Route>

@@ -7,7 +7,7 @@ type CartItemType = {
   count: number;
 };
 
-interface CartContextType {
+export interface CartContextType {
   cartList: CartItemType[];
   loadCartList: () => void;
   addToCart: (id: CartItemType['id'], count: CartItemType['count']) => void;
